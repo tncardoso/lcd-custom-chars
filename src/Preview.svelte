@@ -20,7 +20,7 @@
 }
 </style>
 
-<main>
+<div>
 {#each cells as rows, row}
     <div class="lcd-col">
         {#each rows as cell, col}
@@ -32,4 +32,4 @@
         {/each}
     </div>
 {/each}
-</main>
+</div>

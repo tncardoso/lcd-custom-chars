@@ -2,15 +2,11 @@
   import Preview from './Preview.svelte';
   import Library from './Library.svelte';
 
-  let ROWS = 8;
-  let COLS = 5;
-
-  var cells = new Array(ROWS);
-  for (var row = 0; row < ROWS; row++) {
-    cells[row] = new Array(COLS);
-  }
+  const ROWS = 8;
+  const COLS = 5;
+  var cells = [];
   var code = "";
-  buildCode();
+  clear();
 
   function buildCode() {
     code = "byte customChar[] = {\n";
@@ -28,9 +24,40 @@
     }
     code += "};"
   }
+
+  function buildCodeJson() {
+    code = "";
+    for (var row = 0; row < ROWS; row++) {
+      code += "    [";
+      for (var col = 0; col < COLS; col++) {
+        if (cells[row][col]) {
+          code += "1";
+        } else {
+          code += "0";
+        }
+        if (col != COLS-1) { code += ","; }
+      }
+      code += "]";
+      if (row < ROWS-1) { code += ","; }
+      code += "\n";
+    }
+  }
   
   function cellClicked(row, col) {
     cells[row][col] = !cells[row][col];
+    buildCode();
+  }
+
+  function clear() {
+      cells = new Array(ROWS);
+      for (var row = 0; row < ROWS; row++) {
+        cells[row] = new Array(COLS);
+      }
+      buildCode();
+  }
+
+  function load(event) {
+    cells = event.detail.cells;
     buildCode();
   }
 </script>
@@ -62,7 +89,8 @@
     <div class="container">
       <h1 class="title">Editor</h1>
       <h2 class="subtitle">
-        A simple container to divide your page into <strong>sections</strong>, like the one you're currently reading
+        You can use this editor to create your custom characters. After making your
+        art piece, don't forget to create a Pull Request!
       </h2>
 
       <div class="columns">
@@ -89,12 +117,11 @@
       </div>
       <div class="columns is-centered">
         <div class="column is-one-third">
-          <button class="button is-info">Clear</button>
-          <button class="button is-info">Invert</button>
+          <button class="button is-info" on:click={clear}>Clear</button>
         </div>
       </div>
     </div>
   </section>
 
-  <Library />
+  <Library on:message={load} />
 </main>
