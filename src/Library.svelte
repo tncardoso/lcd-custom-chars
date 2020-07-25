@@ -23,23 +23,21 @@
 .pointer {cursor: pointer;}
 </style>
 
-<main>
- <section class="section">
-    <div class="container">
-        <h1 class="title">Library</h1>
-        <h2 class="subtitle">Click to load on editor</h2>
+<section class="section">
+  <div class="container">
+      <h1 class="title">Library</h1>
+      <h2 class="subtitle">Click to load on editor</h2>
 
-        <div class="columns is-multiline">
-        {#each library as char, i}
-        <div
-          class="column is-2 has-text-centered pointer"
-          on:click={() => load(char.name, char.data) }>
-            <Preview
-              cells={char.data}/>
-            {char.name}
-        </div>
-        {/each}
-        </div>
-    </div>
-  </section>
-</main>
+      <div class="columns is-multiline">
+      {#each library as char, i}
+      <div
+        class="column is-2 has-text-centered pointer"
+        on:click={() => load(char.name, char.data) }>
+          <Preview
+            cells={char.data}/>
+          {char.name}
+      </div>
+      {/each}
+      </div>
+  </div>
+</section>

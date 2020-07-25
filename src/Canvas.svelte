@@ -85,6 +85,16 @@
 </style>
 
 <main>
+  <section class="hero is-info">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title">
+          LCD Custom Characters
+        </h1>
+      </div>
+    </div>
+  </section>
+
  <section class="section">
     <div class="container">
       <h1 class="title">Editor</h1>
@@ -124,4 +134,11 @@
   </section>
 
   <Library on:message={load} />
+
+  <section class="section">
+  <div class="container">
+      <h1 class="title">Source</h1>
+      <p><a href="https://github.com/tncardoso/lcd-custom-chars" target="_blank">Fork on Github</a></p>
+  </div>
+</section>
 </main>
