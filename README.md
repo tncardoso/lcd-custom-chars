@@ -2,7 +2,7 @@
 
 It is possible to create custom characters for your LCD.
 This repository contains an editor and a library with characters
-you can use.
+you can use. You can see a live version [here](https://tncardoso.com/lcd-custom-chars/).
 
 ## Get started
 
